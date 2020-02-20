@@ -42,24 +42,14 @@ def lecture(fileNbr):
 
 
 def main(fileNbr):
-	
+	nbJour = 0
 	bookNumber, libNumber, daysNumber, libList, nbJoursSignupList, BooksPerDayList, BookScores = lecture(fileNbr)
-	save(fileNbr, list(range(libNumber)), libList)
-
-    
-    nbJour = 0
-    
-    while nbJour < daysNumber :
-        LibScore, BookToSend = CalcLibScore(libList, nbJoursSignupList, BooksPerDayList, BookScores, libNumber )
-    
-        indexBest = ChooseBestLib(LibScore)
-        
-        libList = DelSuppr(libList, BookToSend[indexBest])
-        
-        
-        
-        
-        nbJour += nbJoursSignupList[indexBest]
+	while nbJour < daysNumber :
+		LibScore, BookToSend = CalcLibScore(libList, nbJoursSignupList, BooksPerDayList, BookScores, libNumber )
+		indexBest = ChooseBestLib(LibScore)
+		libList = DelSuppr(libList, BookToSend[indexBest])
+		nbJour += nbJoursSignupList[indexBest]
+	save(fileNbr, , BookToSend[indexBest])
 
 
 #ligne1: numberOfLib A, 
