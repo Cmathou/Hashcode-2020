@@ -45,20 +45,22 @@ def main(fileNbr):
 	nbJour = 0
 	LibSign = []
 	BookSign = []
+	libDone = 0
 	bookNumber, libNumber, daysNumber, libList, nbJoursSignupList, BooksPerDayList, BookScores = lecture(fileNbr)
-	while nbJour < daysNumber :
+	while nbJour < daysNumber and libDone < libNumber:
+		libDone += 1
 		LibScore, BookToSend = CalcLibScore(libList, nbJoursSignupList, BooksPerDayList, BookScores, libNumber )
 		indexBest = ChooseBestLib(LibScore)
-        
-        libList[indexBest] = []
-        
-        LibSign.append(indexBest)
-        BookSign.append(BookToSend)
-        
+
+		libList[indexBest] = []
+
+		LibSign.append(indexBest)
+		BookSign.append(BookToSend[indexBest])
+
 		libList = DelSuppr(libList, BookToSend[indexBest])
-        
-        
-        
+
+
+
 		nbJour += nbJoursSignupList[indexBest]
 	save(fileNbr, LibSign, BookSign)
 
@@ -68,6 +70,7 @@ def main(fileNbr):
 #	l1: libID Y, numberOfBooksScaned K
 #	l2: books (in the order they are sent)
 def save(fileNbr, libSign, libBook):
+	print(libBook)
 	file = open(outFile[fileNbr], "w")
 	file.write(str(len(libSign)) + "\n")
 	for i in range(len(libSign)):

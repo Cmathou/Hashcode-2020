@@ -23,7 +23,6 @@ def CalcLibScore(listBooks, listDays, listNbBooks, Scores, libNumber):
     for lib in range(libNumber):
         #Sort the books by score (the best at first)
         sortedBooks = sortBooks(Scores, listBooks[lib])
-        
         BooksToSend.append(sortedBooks)
         
         #Calcul du score de la librairy compte tenu de ses meilleurs bouquins et jours
