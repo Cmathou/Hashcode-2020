@@ -96,7 +96,7 @@ def arrayToOut(array):
 	ret = ""
 	for i in range(len(array) - 1):
 		ret += str(array[i]) + " "
-	if (type(array) )== int):
+	if (type(array) == int):
 		ret += str(array) + "\n"
 	else:
 		ret += str(array[-1]) + "\n"
