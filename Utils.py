@@ -13,6 +13,7 @@ def sortBooks(Scores, listBooks):
 def Recover(listBooks, listDays, listNbBooks, Scores, libNumber):
     
     LibScore = []
+    BooksToSend = []
     
     for lib in range(libNumber):
         #Sort the books by score (the best at first)
@@ -20,7 +21,9 @@ def Recover(listBooks, listDays, listNbBooks, Scores, libNumber):
         
         #Recover the best books that we ca send
         getBooks = sortedBooks[:listNbBooks[lib]]
+        BooksToSend.Append(getBooks)
         
+        #Calcul du score de la librairy compte tenu de ses meilleurs bouquins et jours
         LibScore.append(0)
         
         for book in getBooks :
