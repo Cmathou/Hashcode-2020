@@ -6,7 +6,7 @@ inFile = ["a_example.txt", "b_read_on.txt", "c_incunabula.txt", "d_tough_choices
 outFile = ["a_out.txt", "b_out.txt", "c_out.txt", "d_out.txt", "e_out.txt", "f_out.txt"]
 
 def main(fileNbr):
-	data = open(inFile[fileNbr], "r")
+	data = open("problem/" + inFile[fileNbr], "r")
 	lines = data.readlines()
 
 	#ligne1 bookNumber B, libNumber L, daysNumber D
