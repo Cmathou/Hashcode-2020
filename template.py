@@ -54,7 +54,7 @@ def main(fileNbr):
     
         indexBest = ChooseBestLib(LibScore)
         
-        libList = DelSuppr(libList, BookToSend)
+        libList = DelSuppr(libList, BookToSend[indexBest])
         
         
         
