@@ -15,7 +15,7 @@ def sortBooks(Scores, listBooks):
 
 	return ponderee
 
-def CalcLibScore(listBooks, listDays, listNbBooks, Scores, libNumber):
+def CalcLibScore(listBooks, listDays, listNbBooks, Scores, libNumber, jourPasse, jourTot):
     
     LibScore = []
     BooksToSend = []
@@ -23,12 +23,12 @@ def CalcLibScore(listBooks, listDays, listNbBooks, Scores, libNumber):
     for lib in range(libNumber):
         #Sort the books by score (the best at first)
         sortedBooks = sortBooks(Scores, listBooks[lib])
-        BooksToSend.append(sortedBooks)
+        BooksToSend.append(sortedBooks[:min(len(sortedBooks), jourTot-jourPasse-listDays[lib])])
         
         #Calcul du score de la librairy compte tenu de ses meilleurs bouquins et jours
         LibScore.append(0)
         
-        for book in sortedBooks :
+        for book in sortedBooks[:min(len(sortedBooks), jourTot-jourPasse-listDays[lib])] :
             LibScore[lib] += Scores[book]
         
         LibScore[lib] /= listDays[lib]
