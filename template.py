@@ -2,8 +2,11 @@ import random
 import numpy
 import math
 
-def main():
-	data = open("input.txt", "r")
+inFile = ["a_example.txt", "b_read_on.txt", "c_incunabula.txt", "d_tough_choices.txt", "e_so_many_books.txt", "f_libraries_of_the_world.txt"]
+outFile = ["a_out.txt", "b_out.txt", "c_out.txt", "d_out.txt", "e_out.txt", "f_out.txt"]
+
+def main(fileNbr):
+	data = open(inFile[fileNbr], "r")
 	lines = data.readlines()
 
 	#ligne1 bookNumber B, libNumber L, daysNumber D
@@ -25,7 +28,7 @@ def main():
 
 
 
-	testFile = open("output.txt", "w")
+	testFile = open(outFile[fileNbr], "w")
 
 	testFile.write(theMagicReturn)
 	#ligne1: numberOfLib A, 
@@ -38,4 +41,5 @@ def main():
 	data.close()
 
 if (__name__ == "__main__"):
-	main()
+	for i in range(len(inFile)):
+		main(i)
