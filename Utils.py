@@ -6,7 +6,10 @@ Created on Thu Feb 20 20:00:07 2020
 @author: toinou
 """
 def sortBooks(Scores, listBooks):
-	ponderee = [x for _,x in sorted(zip(Scores, listBooks))]
+	listScores = []
+	for i in range(len(listBooks)):
+		listScores.append(Scores[i])
+	ponderee = [x for _,x in sorted(zip(listScores, listBooks))]
 
 	return ponderee
 
