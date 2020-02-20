@@ -28,7 +28,7 @@ def CalcLibScore(listBooks, listDays, listNbBooks, Scores, libNumber, jourPasse,
         #Calcul du score de la librairy compte tenu de ses meilleurs bouquins et jours
         LibScore.append(0)
         
-        for book in sortedBooks :
+        for book in sortedBooks[:min(len(sortedBooks), jourTot-jourPasse-listDays[lib])] :
             LibScore[lib] += Scores[book]
         
         LibScore[lib] /= listDays[lib]
