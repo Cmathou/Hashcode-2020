@@ -1,6 +1,8 @@
 import random
 import numpy
 import math
+from Utils import *
+
 
 inFile = ["a_example.txt", "b_read_on.txt", "c_incunabula.txt", "d_tough_choices.txt", "e_so_many_books.txt", "f_libraries_of_the_world.txt"]
 outFile = ["a_out.txt", "b_out.txt", "c_out.txt", "d_out.txt", "e_out.txt", "f_out.txt"]
@@ -44,6 +46,20 @@ def main(fileNbr):
 	bookNumber, libNumber, daysNumber, libList, nbJoursSignupList, BooksPerDayList, BookScores = lecture(fileNbr)
 	save(fileNbr, list(range(libNumber)), libList)
 
+    
+    nbJour = 0
+    
+    while nbJour < daysNumber :
+        LibScore, BookToSend = CalcLibScore(libList, nbJoursSignupList, BooksPerDayList, BookScores, libNumber )
+    
+        indexBest = ChooseBestLib(LibScore)
+        
+        libList = DelSuppr(libList, BookToSend)
+        
+        
+        
+        
+        nbJour += nbJoursSignupList[indexBest]
 
 
 #ligne1: numberOfLib A, 
