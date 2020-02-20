@@ -109,10 +109,11 @@ def numpyToOut(array):
 	if (np.issubdtype(type(array), np.integer)):
 		ret += str(array) + "\n"
 	else:
-		ret += str(array[np.size(array) - 1]) + "\n"
+		ret += str(array[-1]) + "\n"
 	return ret
 
 if (__name__ == "__main__"):
+	main(4)
 	for i in range(len(inFile)):
 		print(inFile[i])
 		main(i)
