@@ -13,7 +13,7 @@ def sortBooks(Scores, listBooks):
 
 	return ponderee
 
-def Recover(listBooks, listDays, listNbBooks, Scores, libNumber):
+def CalcLibScore(listBooks, listDays, listNbBooks, Scores, libNumber):
     
     LibScore = []
     BooksToSend = []
@@ -34,6 +34,6 @@ def Recover(listBooks, listDays, listNbBooks, Scores, libNumber):
         
         LibScore /= listDays[lib]
     
-    
+    return LibScore, BooksToSend
         
         
