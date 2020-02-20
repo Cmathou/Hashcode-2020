@@ -5,6 +5,9 @@ Created on Thu Feb 20 20:00:07 2020
 
 @author: toinou
 """
+
+import numpy as np
+
 def sortBooks(Scores, listBooks):
 	listScores = []
 	for i in range(len(listBooks)):
@@ -24,7 +27,7 @@ def CalcLibScore(listBooks, listDays, listNbBooks, Scores, libNumber):
         
         #Recover the best books that we ca send
         getBooks = sortedBooks[:listNbBooks[lib]]
-        BooksToSend.Append(getBooks)
+        BooksToSend.append(getBooks)
         
         #Calcul du score de la librairy compte tenu de ses meilleurs bouquins et jours
         LibScore.append(0)
@@ -35,5 +38,32 @@ def CalcLibScore(listBooks, listDays, listNbBooks, Scores, libNumber):
         LibScore /= listDays[lib]
     
     return LibScore, BooksToSend
+
+
+def ChooseBestLib(LibScore):
+    
+    return np.argmax(LibScore)[0]
+
+def DelSuppr(listBooks, BookToDel):
+    
+    for book in BookToDel :
+        for lib in listBooks :
+            listBooks[]
+
+
+
+
+
+#Order :
+"""
+CalcLibScore
+Choose best score
+Envoir Books
+Del books dans toutes les list books
+
+recommence
+
+
+"""
         
         
