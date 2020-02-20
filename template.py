@@ -48,6 +48,7 @@ def main(fileNbr):
 	libDone = 0
 	bookNumber, libNumber, daysNumber, libList, nbJoursSignupList, BooksPerDayList, BookScores = lecture(fileNbr)
 	while nbJour < daysNumber and libDone < libNumber:
+		print(nbJour/daysNumber * 100.0)
 		libDone += 1
 		LibScore, BookToSend = CalcLibScore(libList, nbJoursSignupList, BooksPerDayList, BookScores, libNumber )
 		indexBest = ChooseBestLib(LibScore)
@@ -86,4 +87,5 @@ def arrayToOut(array):
 
 if (__name__ == "__main__"):
 	for i in range(len(inFile)):
+		print(inFile[i])
 		main(i)
