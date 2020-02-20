@@ -23,7 +23,7 @@ def lecture(fileNbr):
 	nbJoursSignupList = []
 	BooksPerDayList = []
 
-	l1 = True 
+	l1 = True
 	for i in lines[2:]:
 		if l1:
 			l1 = False
@@ -54,9 +54,16 @@ def save(fileNbr, libSign, libBook):
 	file = open(outFile[fileNbr], "w")
 	file.write(str(len(libSign)) + "\n")
 	for i in range(len(libSign)):
-		file.write(str(libSign[i]) + "\n")
-		file.write(str(libBook[i]) + "\n")
+		file.write(arrayToOut([libSign[i], len(libBook[i])]))
+		file.write(arrayToOut(libBook[i]))
 	file.close()
+
+def arrayToOut(array):
+	ret = ""
+	for i in range(len(array) - 1):
+		ret += str(array[i]) + " "
+	ret += str(array[len(array) - 1]) + "\n"
+	return ret
 
 if (__name__ == "__main__"):
 	for i in range(len(inFile)):
