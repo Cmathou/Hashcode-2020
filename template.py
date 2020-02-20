@@ -27,18 +27,16 @@ def main(fileNbr):
 		theMagicReturn = ""
 
 
-
-	testFile = open(outFile[fileNbr], "w")
-
-	testFile.write(theMagicReturn)
-	#ligne1: numberOfLib A, 
-	#rest: libDescription * A
-	#	l1: libID Y, numberOfBooksScaned K
-	#	l2: books (in the order they are sent)
-
-
-	testFile.close()
-	data.close()
+#ligne1: numberOfLib A, 
+#rest: libDescription * A
+#	l1: libID Y, numberOfBooksScaned K
+#	l2: books (in the order they are sent)
+def save(fileNbr, libSign, libBook):
+	file = open(outFile[fileNbr], "w")
+	for i in range(libSign):
+		file.writelines(libSign[i])
+		file.writelines(libBook[i])
+	file.close()
 
 if (__name__ == "__main__"):
 	for i in range(len(inFile)):
