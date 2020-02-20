@@ -52,7 +52,6 @@ def main(fileNbr):
 		file = open(outFile[fileNbr], "w")
 		file.write(str(libNumber) + "\n")
 	while nbJour < daysNumber and libDone < libNumber:
-		print(nbJour/daysNumber * 100.0)
 		libDone += 1
 		LibScore, BookToSend = CalcLibScore(libList, nbJoursSignupList, BooksPerDayList, BookScores, libNumber, nbJour, daysNumber )
 		indexBest = ChooseBestLib(LibScore)
@@ -113,7 +112,6 @@ def numpyToOut(array):
 	return ret
 
 if (__name__ == "__main__"):
-	main(4)
 	for i in range(len(inFile)):
 		print(inFile[i])
 		main(i)
