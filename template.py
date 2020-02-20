@@ -12,8 +12,8 @@ lines = data.readlines()
 #	l2: BookID * N
 
 
-bookNumber, libNumber, daysNumber = int(i) for i in lines[0]
-BookScores = [int(i) for i in lines[1]]
+bookNumber, libNumber, daysNumber = int(i) for i in lines[0].split()
+BookScores = [int(i) for i in lines[1].split()]
 
 
 for i in lines[2:]:
