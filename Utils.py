@@ -34,20 +34,20 @@ def CalcLibScore(listBooks, listDays, listNbBooks, Scores, libNumber):
         for book in getBooks :
             LibScore[lib] += Scores[book]
         
-        LibScore /= listDays[lib]
+        LibScore[lib] /= listDays[lib]
     
     return LibScore, BooksToSend
 
 
 def ChooseBestLib(LibScore):
     
-    return np.argmax(LibScore)[0]
+    return np.argmax(LibScore)
 
 def DelSuppr(listBooks, BookToDel):
     
     for book in BookToDel :
-        for lib in listBooks :
-            if book in listBooks[lib] :
+        for lib in range(len(listBooks)) :
+            if book in listBooks[lib]:
                 listBooks[lib].remove(book)
                 
     return listBooks
