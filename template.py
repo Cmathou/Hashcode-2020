@@ -1,11 +1,12 @@
 import random
-import numpy
 import math
 from Utils import *
 
 
 inFile = ["a_example.txt", "b_read_on.txt", "c_incunabula.txt", "d_tough_choices.txt", "e_so_many_books.txt", "f_libraries_of_the_world.txt"]
 outFile = ["a_out.txt", "b_out.txt", "c_out.txt", "d_out.txt", "e_out.txt", "f_out.txt"]
+
+continuous = True
 
 #ligne1 bookNumber B, libNumber L, daysNumber D
 #ligne2 BooksScore * B
@@ -47,6 +48,9 @@ def main(fileNbr):
 	BookSign = []
 	libDone = 0
 	bookNumber, libNumber, daysNumber, libList, nbJoursSignupList, BooksPerDayList, BookScores = lecture(fileNbr)
+	if (continuous):
+		file = open(outFile[fileNbr], "w")
+		file.write(str(libNumber) + "\n")
 	while nbJour < daysNumber and libDone < libNumber:
 		print(nbJour/daysNumber * 100.0)
 		libDone += 1
@@ -55,15 +59,21 @@ def main(fileNbr):
 
 		libList[indexBest] = []
 
-		LibSign.append(indexBest)
-		BookSign.append(BookToSend[indexBest])
+		if (continuous):
+			continiousSave(file, indexBest, indexBest)
+		else:
+			LibSign.append(indexBest)
+			BookSign.append(BookToSend[indexBest])
 
 		libList = DelSuppr(libList, BookToSend[indexBest])
 
 
 
 		nbJour += nbJoursSignupList[indexBest]
-	save(fileNbr, LibSign, BookSign)
+	if (continuous):
+		file.close()
+	else:
+		save(fileNbr, LibSign, BookSign)
 
 
 #ligne1: numberOfLib A, 
@@ -78,11 +88,28 @@ def save(fileNbr, libSign, libBook):
 		file.write(arrayToOut(libBook[i]))
 	file.close()
 
+def continiousSave(file, libSign, libBook):
+	file.write(arrayToOut([libSign, np.size(libBook)]))
+	file.write(numpyToOut(libBook))
+
 def arrayToOut(array):
 	ret = ""
 	for i in range(len(array) - 1):
 		ret += str(array[i]) + " "
-	ret += str(array[len(array) - 1]) + "\n"
+	if (type(array) )== int):
+		ret += str(array) + "\n"
+	else:
+		ret += str(array[-1]) + "\n"
+	return ret
+
+def numpyToOut(array):
+	ret = ""
+	for i in range(np.size(array) - 1):
+		ret += str(array[i]) + " "
+	if (np.issubdtype(type(array), np.integer)):
+		ret += str(array) + "\n"
+	else:
+		ret += str(array[np.size(array) - 1]) + "\n"
 	return ret
 
 if (__name__ == "__main__"):
