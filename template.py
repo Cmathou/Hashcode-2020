@@ -27,21 +27,22 @@ def lecture(fileNbr):
 	for i in lines[2:]:
 		if l1:
 			l1 = False
-			nBooks, signupTime, booksPerDay = [int(i) for j in i.split()]
+			[nBooks, signupTime, booksPerDay] = [int(j) for j in i.split()]
 			BooksPerDayList.append(booksPerDay)
 			nbJoursSignupList.append(signupTime)
 		else:
 			l1 = True
-			libList.append([int(i) for j in i.split()])
+			libList.append([int(j) for j in i.split()])
 
-	return bookNumber, libNumber, daysNumber, libList, nbJoursSignupList, BooksPerDayList, BookScores,
+	return bookNumber, libNumber, daysNumber, libList, nbJoursSignupList, BooksPerDayList, BookScores
 
 
 
 
 def main(fileNbr):
 	
-	lecture(fileNbr)
+	bookNumber, libNumber, daysNumber, libList, nbJoursSignupList, BooksPerDayList, BookScores = lecture(fileNbr)
+	save(fileNbr, list(range(libNumber)), libList)
 
 
 
@@ -51,10 +52,10 @@ def main(fileNbr):
 #	l2: books (in the order they are sent)
 def save(fileNbr, libSign, libBook):
 	file = open(outFile[fileNbr], "w")
-	file.writelines(len(libSign))
+	file.write(str(len(libSign)) + "\n")
 	for i in range(len(libSign)):
-		file.writelines(libSign[i])
-		file.writelines(libBook[i])
+		file.write(str(libSign[i]) + "\n")
+		file.write(str(libBook[i]) + "\n")
 	file.close()
 
 if (__name__ == "__main__"):
