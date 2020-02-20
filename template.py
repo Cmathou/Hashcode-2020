@@ -59,7 +59,7 @@ def main(fileNbr):
 		libList[indexBest] = []
 
 		if (continuous):
-			continiousSave(file, indexBest, indexBest)
+			continiousSave(file, indexBest, BookToSend[indexBest])
 		else:
 			LibSign.append(indexBest)
 			BookSign.append(BookToSend[indexBest])
