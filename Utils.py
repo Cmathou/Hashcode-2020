@@ -48,7 +48,11 @@ def DelSuppr(listBooks, BookToDel):
     
     for book in BookToDel :
         for lib in listBooks :
-            listBooks[]
+            if book in listBooks[lib] :
+                listBooks[lib].remove(book)
+                
+    return listBooks
+                
 
 
 
