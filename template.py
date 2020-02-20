@@ -70,7 +70,6 @@ def main(fileNbr):
 #	l1: libID Y, numberOfBooksScaned K
 #	l2: books (in the order they are sent)
 def save(fileNbr, libSign, libBook):
-	print(libBook)
 	file = open(outFile[fileNbr], "w")
 	file.write(str(len(libSign)) + "\n")
 	for i in range(len(libSign)):
