@@ -34,7 +34,7 @@ def lecture(fileNbr):
 			l1 = True
 			libList.append([int(i) for j in i.split()])
 
-	return bookNumber, libNumber, daysNumber, libList, nbJoursSignupList, BooksPerDayList
+	return bookNumber, libNumber, daysNumber, libList, nbJoursSignupList, BooksPerDayList, BookScores,
 
 
 
