@@ -5,17 +5,15 @@ import math
 inFile = ["a_example.txt", "b_read_on.txt", "c_incunabula.txt", "d_tough_choices.txt", "e_so_many_books.txt", "f_libraries_of_the_world.txt"]
 outFile = ["a_out.txt", "b_out.txt", "c_out.txt", "d_out.txt", "e_out.txt", "f_out.txt"]
 
-
+#ligne1 bookNumber B, libNumber L, daysNumber D
+#ligne2 BooksScore * B
+#rest: L * 2lignes
+#	l1: numberOfBooks N, signupTime T, booksPerDay M
+#	l2: BookID * N
 def lecture(fileNbr):
 	data = open("problem/" + inFile[fileNbr], "r")
 	lines = data.readlines()
 	data.close()
-
-	#ligne1 bookNumber B, libNumber L, daysNumber D
-	#ligne2 BooksScore * B
-	#rest: L * 2lignes
-	#	l1: numberOfBooks N, signupTime T, booksPerDay M
-	#	l2: BookID * N
 
 
 	[bookNumber, libNumber, daysNumber] = [int(i) for i in lines[0].split()]
@@ -53,7 +51,8 @@ def main(fileNbr):
 #	l2: books (in the order they are sent)
 def save(fileNbr, libSign, libBook):
 	file = open(outFile[fileNbr], "w")
-	for i in range(libSign):
+	file.writelines(len(libSign))
+	for i in range(len(libSign)):
 		file.writelines(libSign[i])
 		file.writelines(libBook[i])
 	file.close()
