@@ -24,14 +24,12 @@ def CalcLibScore(listBooks, listDays, listNbBooks, Scores, libNumber):
         #Sort the books by score (the best at first)
         sortedBooks = sortBooks(Scores, listBooks[lib])
         
-        #Recover the best books that we ca send
-        getBooks = sortedBooks[:listNbBooks[lib]]
-        BooksToSend.append(getBooks)
+        BooksToSend.append(sortedBooks)
         
         #Calcul du score de la librairy compte tenu de ses meilleurs bouquins et jours
         LibScore.append(0)
         
-        for book in getBooks :
+        for book in sortedBooks :
             LibScore[lib] += Scores[book]
         
         LibScore /= listDays[lib]

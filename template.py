@@ -55,10 +55,15 @@ def main(fileNbr):
 		LibScore, BookToSend = CalcLibScore(libList, nbJoursSignupList, BooksPerDayList, BookScores, libNumber )
 		indexBest = ChooseBestLib(LibScore)
         
+        libList[indexBest] = []
+        
         LibSign.append(indexBest)
         BookSign.append(BookToSend)
         
 		libList = DelSuppr(libList, BookToSend[indexBest])
+        
+        
+        
 		nbJour += nbJoursSignupList[indexBest]
 	save(fileNbr, , BookToSend[indexBest])
 
