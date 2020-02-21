@@ -32,9 +32,7 @@ def CalcLibScore(listBooks, listDays, listNbBooks, Scores, libNumber, jourPasse,
         
         for book in slicedList :
             LibScore[lib] += Scores[book]
-        
-        LibScore[lib] /= listDays[lib]
-    
+            
     return LibScore, BooksToSend
 
 
