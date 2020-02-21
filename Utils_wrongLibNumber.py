@@ -16,22 +16,46 @@ def sortBooks(Scores, listBooks):
 
     return ponderee
 
-def CalcLibScore(listBooks, listDays, listNbBooks, Scores, libNumber, jourPasse, jourTot):
+def SortIdeeFaramineuse(Libs, Scores):
+
+    Scores, Libs = [y,x for y,x in sorted(zip(Scores, Libs))]
+
+    return Libs, Scores
+
+def CreaListes(listLibs, listDays, listNbBooks, Scores, libNumber, jourPasse, jourTot):
+    listeLibsSortedBySignupDays = [[] for i in range(max(listDays))]
+    listeScoresSortedBySignupDays = [[] for i in range(max(listDays))]
+
+    LibScore, BookToSend = CalcLibScore(listLibs, listDays, listNbBooks, Scores, libNumber, jourPasse, jourTot )
+
+    for libIndex in range(len(listLibs)):
+        listeLibsSortedBySignupDays[libIndex].append(listLibs[libIndex])
+        listeScoresSortedBySignupDays[libIndex].append(LibScore[libIndex])
+
+    for i in range(len(listeLibsSortedBySignupDays)):
+        listeLibsSortedBySignupDays[i], listeScoresSortedBySignupDays[i] = SortIdeeFaramineuse(listeLibsSortedBySignupDays[i], listeScoresSortedBySignupDays[i])
+
+    return listeLibsSortedBySignupDays, listeScoresSortedBySignupDays
+
+
+def CalcLibScore(listLibSign,listBooks, listDays, listNbBooks, Scores, libNumber, jourPasse, jourTot):
     
     LibScore = []
     BooksToSend = []
     
-    for lib in range(libNumber):
-        #Sort the books by score (the best at first)
-        sortedBooks = sortBooks(Scores, listBooks[lib])
-        slicedList = sortedBooks[:min(len(sortedBooks), (jourTot-jourPasse-listDays[lib]) * listNbBooks[lib])]
-        BooksToSend.append(slicedList)
-        
-        #Calcul du score de la librairy compte tenu de ses meilleurs bouquins et jours
-        LibScore.append(0)
-        
-        for book in slicedList :
-            LibScore[lib] += Scores[book]
+    for signLib in listLibSign :
+        LibScore.append([])
+        for lib in signLib:
+            #Sort the books by score (the best at first)
+            sortedBooks = sortBooks(Scores, listBooks[lib])
+            slicedList = sortedBooks[:min(len(sortedBooks), (jourTot-jourPasse-listDays[lib]) * listNbBooks[lib])]
+            BooksToSend.append(slicedList)
+            
+            #Calcul du score de la librairy compte tenu de ses meilleurs bouquins et jours
+            LibScore[-1].append(0)
+            
+            for book in slicedList :
+                LibScore[-1][-1] += Scores[book]
             
     return LibScore, BooksToSend
 
