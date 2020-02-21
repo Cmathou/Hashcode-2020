@@ -42,7 +42,7 @@ def CreaListes(listLibs, listDays, listNbBooks, Scores, libNumber, jourPasse, jo
 def CalcLibScore(listLibSign,listBooks, listDays, listNbBooks, Scores, libNumber, jourPasse, jourTot):
     
     LibScore = []
-    BooksToSend = []
+    BooksToSend = [[] for lib in range(libNumber)]
     
     for signLib in listLibSign :
         LibScore.append([])
@@ -50,13 +50,13 @@ def CalcLibScore(listLibSign,listBooks, listDays, listNbBooks, Scores, libNumber
             #Sort the books by score (the best at first)
             sortedBooks = sortBooks(Scores, listBooks[lib])
             slicedList = sortedBooks[:min(len(sortedBooks), (jourTot-jourPasse-listDays[lib]) * listNbBooks[lib])]
-            BooksToSend.append(slicedList)
+            BooksToSend[lib] = slicedList
             
             #Calcul du score de la librairy compte tenu de ses meilleurs bouquins et jours
-            LibScore[-1].append(0)
+            LibScore[signLib].append(0)
             
             for book in slicedList :
-                LibScore[-1][-1] += Scores[book]
+                LibScore[signLib][lib] += Scores[book]
             
     return LibScore, BooksToSend
 
