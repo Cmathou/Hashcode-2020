@@ -4,7 +4,7 @@
 Created on Thu Feb 20 20:00:07 2020
 
 """
-
+import math
 import numpy as np
 
 def sortBooks(Scores, listBooks):
@@ -71,14 +71,18 @@ def ChooseBestLib(ListScoreSignUpDays):
     
     return np.argmax(listBest)
 
-def CheckX2(libSignX2, ScoreX2, bookToSendX2, listBooks, ScoreBest, ScoreBook, listDays, listNbBooks, jourPasse, jourTot):
+def CheckX2(libSignX2, ScoreX2, bookToSendX2,indexBest, listBooks, ScoreBook, listDays, listNbBooks, jourPasse, jourTot):
     
-    
-    if len(ScoreX2) == 0 :
+    val = int(math.floor(indexBest/2))
+
+    if len(ScoreX2[val]) == 0 :
         return False, 0,0
     
-    ScoreX2 = ScoreX2[0]
-    bookToSendX2 = bookToSendX2[0]
+    
+    libSignX2 = libSignX2[val]
+    ScoreX2 = ScoreX2[val][0]
+    bookToSendX2 = bookToSendX2[val][0]
+    ScoreBest = ScoreX2[indexBest][0]
     
     ScoreFin = ScoreX2
     mylistDays = []

@@ -1,7 +1,6 @@
 import random
-import math
 import sys
-from utilsAntoine import *
+from Utils_wrongLibNumber import *
 
 
 inFile = ["a_example.txt", "b_read_on.txt", "c_incunabula.txt", "d_tough_choices.txt", "e_so_many_books.txt", "f_libraries_of_the_world.txt"]
@@ -61,9 +60,7 @@ def main(fileNbr):
 		#		LibScore, BookToSend = CalcLibScore(libList, nbJoursSignupList, BooksPerDayList, BookScores, libNumber, nbJour, daysNumber )
 		indexBest = ChooseBestLib(ScoreBySignUp)
 
-		Flag, indexes, books = CheckX2(LibBySignUp[int(math.floor(indexBest/2))], ScoreBySignUp[int(math.floor(indexBest/2))],
-                                             BookToSend[LibBySignUp[int(math.floor(indexBest/2))], libList, 
-                                             ScoreBySignUp[indexBest][0], BookScores, nbJoursSignupList, 
+		Flag, indexes, books = CheckX2(LibBySignUp, ScoreBySignUp,BookToSend,indexBest, libList, BookScores, nbJoursSignupList, 
                                              BooksPerDayList, nbJour, daysNumber)
         
 		if Flag :
