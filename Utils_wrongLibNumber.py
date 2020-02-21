@@ -8,12 +8,13 @@ Created on Thu Feb 20 20:00:07 2020
 import numpy as np
 
 def sortBooks(Scores, listBooks):
-	listScores = []
-	for i in range(len(listBooks)):
-		listScores.append(Scores[i])
-	ponderee = [x for _,x in sorted(zip(listScores, listBooks))]
+    listScores = []
+    for i in listBooks:#range(len(listBooks)):
+    	listScores.append(Scores[i])
+    # listScores = [Scores[i] for i in listBooks]
+    ponderee = [x for _,x in sorted(zip(listScores, listBooks))]
 
-	return ponderee
+    return ponderee
 
 def CalcLibScore(listBooks, listDays, listNbBooks, Scores, libNumber, jourPasse, jourTot):
     
