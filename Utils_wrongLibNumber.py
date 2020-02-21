@@ -30,7 +30,7 @@ def CreaListes(listLibs, listDays, listNbBooks, Scores, libNumber, jourPasse, jo
     LibScore, BookToSend = CalcLibScore(listLibs, listDays, listNbBooks, Scores, libNumber, jourPasse, jourTot )
 
     for libIndex in range(len(listLibs)):
-        listeLibsSortedBySignupDays[libIndex].append(listLibs[libIndex])
+        listeLibsSortedBySignupDays[libIndex].append(BookToSend[libIndex])
         listeScoresSortedBySignupDays[libIndex].append(LibScore[libIndex])
 
     for i in range(len(listeLibsSortedBySignupDays)):
@@ -39,24 +39,23 @@ def CreaListes(listLibs, listDays, listNbBooks, Scores, libNumber, jourPasse, jo
     return listeLibsSortedBySignupDays, listeScoresSortedBySignupDays
 
 
-def CalcLibScore(listLibSign,listBooks, listDays, listNbBooks, Scores, libNumber, jourPasse, jourTot):
+def CalcLibScore(listBooks, listDays, listNbBooks, Scores, libNumber, jourPasse, jourTot):
     
     LibScore = []
-    BooksToSend = [[] for lib in range(libNumber)]
+    BooksToSend = []
     
-    for signLib in listLibSign :
-        LibScore.append([])
-        for lib in signLib:
-            #Sort the books by score (the best at first)
-            sortedBooks = sortBooks(Scores, listBooks[lib])
-            slicedList = sortedBooks[:min(len(sortedBooks), (jourTot-jourPasse-listDays[lib]) * listNbBooks[lib])]
-            BooksToSend[lib] = slicedList
-            
-            #Calcul du score de la librairy compte tenu de ses meilleurs bouquins et jours
-            LibScore[signLib].append(0)
-            
-            for book in slicedList :
-                LibScore[signLib][lib] += Scores[book]
+    for lib in range(len(libNumber)) :
+
+        #Sort the books by score (the best at first)
+        sortedBooks = sortBooks(Scores, listBooks[lib])
+        slicedList = sortedBooks[:min(len(sortedBooks), (jourTot-jourPasse-listDays[lib]) * listNbBooks[lib])]
+        BooksToSend.append(slicedList)
+        
+        #Calcul du score de la librairy compte tenu de ses meilleurs bouquins et jours
+        LibScore.append(0)
+        
+        for book in slicedList :
+            LibScore[lib] += Scores[book]
             
     return LibScore, BooksToSend
 
