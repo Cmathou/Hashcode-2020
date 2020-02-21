@@ -1,7 +1,7 @@
 import random
 import math
 import sys
-from Utils_wrongLibNumber import *
+from utilsAntoine import *
 
 
 inFile = ["a_example.txt", "b_read_on.txt", "c_incunabula.txt", "d_tough_choices.txt", "e_so_many_books.txt", "f_libraries_of_the_world.txt"]
@@ -55,48 +55,44 @@ def main(fileNbr):
 		file = open(outFile[fileNbr], "w")
 		file.write(str(libNumber) + "\n")
 	while nbJour < daysNumber and libDone < libNumber and deletedBooks < bookNumber:
-		libDone += 1
 
 		LibBySignUp, ScoreBySignUp, BookToSend = CreaListes(libList, nbJoursSignupList, BooksPerDayList, BookScores, libNumber, nbJour, daysNumber)
 
 		#		LibScore, BookToSend = CalcLibScore(libList, nbJoursSignupList, BooksPerDayList, BookScores, libNumber, nbJour, daysNumber )
 		indexBest = ChooseBestLib(ScoreBySignUp)
 
-		Flag, indexes, books = CheckX2(LibBySignUp[math.floor(indexBest/2)], ScoreBySignUp[math.floor(indexBest/2)][0],
-                                             BookToSend[LibBySignUp[math.floor(indexBest/2)][0]], libList, 
+		Flag, indexes, books = CheckX2(LibBySignUp[int(math.floor(indexBest/2))], ScoreBySignUp[int(math.floor(indexBest/2))][0],
+                                             BookToSend[LibBySignUp[int(math.floor(indexBest/2))][0]], libList, 
                                              ScoreBySignUp[indexBest][0], BookScores, nbJoursSignupList, 
                                              BooksPerDayList, nbJour, daysNumber)
         
 		if Flag :
-        		indexBest = indexes
-        		BookToSend[indexBest[1]] = books
-
-
-
-
-
-
-
-
-		libList[indexBest] = []
-
-		if (continuous):
-			continiousSave(file, indexBest, BookToSend[indexBest])
+			indexBest = indexes
+			BookToSend[indexBest[1]] = books
 		else:
-			LibSign.append(indexBest)
-			BookSign.append(BookToSend[indexBest])
+			indexBest = [indexBest]
 
-		libList = DelSuppr(libList, BookToSend[indexBest])
-		deletedBooks += len(BookToSend[indexBest])
+		for index in indexBest: 
 
-		newPercent = (100*nbJour)/daysNumber
-		if newPercent > percent:
-			percent = newPercent
-			print(newPercent, "%")
+			libDone += 1
+			libList[index] = []
 
+			if (continuous):
+				continiousSave(file, index, BookToSend[index])
+			else:
+				LibSign.append(index)
+				BookSign.append(BookToSend[index])
 
+			libList = DelSuppr(libList, BookToSend[index])
+			deletedBooks += len(BookToSend[index])
 
-		nbJour += nbJoursSignupList[indexBest]
+			newPercent = (100*nbJour)/daysNumber
+			if newPercent > percent:
+				percent = newPercent
+				print(newPercent, "%")
+
+			nbJour += nbJoursSignupList[index]
+
 	if (continuous):
 		file.close()
 	else:
