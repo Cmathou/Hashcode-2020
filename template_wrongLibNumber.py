@@ -61,8 +61,8 @@ def main(fileNbr):
 		#		LibScore, BookToSend = CalcLibScore(libList, nbJoursSignupList, BooksPerDayList, BookScores, libNumber, nbJour, daysNumber )
 		indexBest = ChooseBestLib(ScoreBySignUp)
 
-		Flag, indexes, books = CheckX2(LibBySignUp[int(math.floor(indexBest/2))], ScoreBySignUp[int(math.floor(indexBest/2))][0],
-                                             BookToSend[LibBySignUp[int(math.floor(indexBest/2))][0]], libList, 
+		Flag, indexes, books = CheckX2(LibBySignUp[int(math.floor(indexBest/2))], ScoreBySignUp[int(math.floor(indexBest/2))],
+                                             BookToSend[LibBySignUp[int(math.floor(indexBest/2))], libList, 
                                              ScoreBySignUp[indexBest][0], BookScores, nbJoursSignupList, 
                                              BooksPerDayList, nbJour, daysNumber)
         

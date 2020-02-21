@@ -73,6 +73,13 @@ def ChooseBestLib(ListScoreSignUpDays):
 
 def CheckX2(libSignX2, ScoreX2, bookToSendX2, listBooks, ScoreBest, ScoreBook, listDays, listNbBooks, jourPasse, jourTot):
     
+    
+    if len(ScoreX2) == 0 :
+        return False, 0,0
+    
+    ScoreX2 = ScoreX2[0]
+    bookToSendX2 = bookToSendX2[0]
+    
     ScoreFin = ScoreX2
     mylistDays = []
     mylistNbBooks = []
