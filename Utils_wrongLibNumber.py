@@ -24,8 +24,8 @@ def SortIdeeFaramineuse(Libs, Scores):
     return Libs, Scores
 
 def CreaListes(listLibs, listDays, listNbBooks, Scores, libNumber, jourPasse, jourTot):
-    listeLibsSortedBySignupDays = [[] for i in range(max(listDays))]
-    listeScoresSortedBySignupDays = [[] for i in range(max(listDays))]
+    listeLibsSortedBySignupDays = [[] for i in range(max(listDays)+1)]
+    listeScoresSortedBySignupDays = [[] for i in range(max(listDays)+1)]
 
     LibScore, BookToSend = CalcLibScore(listLibs, listDays, listNbBooks, Scores, libNumber, jourPasse, jourTot )
 
@@ -43,7 +43,7 @@ def CalcLibScore(listBooks, listDays, listNbBooks, Scores, libNumber, jourPasse,
     LibScore = []
     BooksToSend = []
     
-    for lib in range(len(libNumber)) :
+    for lib in range(libNumber) :
 
         #Sort the books by score (the best at first)
         sortedBooks = sortBooks(Scores, listBooks[lib])
@@ -61,7 +61,7 @@ def CalcLibScore(listBooks, listDays, listNbBooks, Scores, libNumber, jourPasse,
 
 def ChooseBestLib(LibScore):
     
-    return np.argmax([sign[0] for sign in LibScore])
+    return np.argmax([sign[0] for sign in LibScore if len(sign) != 0])
 
 def DelSuppr(listBooks, BookToDel):
     
