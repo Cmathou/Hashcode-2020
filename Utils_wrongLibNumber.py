@@ -36,7 +36,7 @@ def CreaListes(listLibs, listDays, listNbBooks, Scores, libNumber, jourPasse, jo
     for i in range(len(listeLibsSortedBySignupDays)):
         listeLibsSortedBySignupDays[i], listeScoresSortedBySignupDays[i] = SortIdeeFaramineuse(listeLibsSortedBySignupDays[i], listeScoresSortedBySignupDays[i])
 
-    return listeLibsSortedBySignupDays, listeScoresSortedBySignupDays, BooksToSend
+    return listeLibsSortedBySignupDays, listeScoresSortedBySignupDays, BookToSend
 
 def CalcLibScore(listBooks, listDays, listNbBooks, Scores, libNumber, jourPasse, jourTot):
     
