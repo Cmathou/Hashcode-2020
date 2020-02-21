@@ -18,7 +18,8 @@ def sortBooks(Scores, listBooks):
 
 def SortIdeeFaramineuse(Libs, Scores):
 
-    Scores, Libs = [y,x for y,x in sorted(zip(Scores, Libs))]
+    Libs = [x for _,x in sorted(zip(Scores, Libs))]
+    Scores = sorted(Scores)
 
     return Libs, Scores
 
