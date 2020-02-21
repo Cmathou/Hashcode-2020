@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import random
 import math
+import sys
 from Utils import *
 
 
@@ -73,7 +74,7 @@ def main(fileNbr):
 		newPercent = (100*nbJour)/daysNumber
 		if newPercent > percent:
 			percent = newPercent
-			print(newPercent)
+			print newPercent, "%"
 
 
 
@@ -123,7 +124,8 @@ def numpyToOut(array):
 	return ret
 
 if (__name__ == "__main__"):
-	for i in range(len(inFile)):
-		print "doing", inFile[i]
-		main(i)
-		print inFile[i], "done"
+	#for i in range(len(inFile)):
+	i = int(sys.argv[1])
+	print "doing", inFile[i]
+	main(i)
+	print inFile[i], "done"
