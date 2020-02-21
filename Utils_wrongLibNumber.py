@@ -30,14 +30,13 @@ def CreaListes(listLibs, listDays, listNbBooks, Scores, libNumber, jourPasse, jo
     LibScore, BookToSend = CalcLibScore(listLibs, listDays, listNbBooks, Scores, libNumber, jourPasse, jourTot )
 
     for libIndex in range(len(listLibs)):
-        listeLibsSortedBySignupDays[libIndex].append(BookToSend[libIndex])
-        listeScoresSortedBySignupDays[libIndex].append(LibScore[libIndex])
+        listeLibsSortedBySignupDays[listDays[libIndex]].append(libIndex)
+        listeScoresSortedBySignupDays[listDays[libIndex]].append(LibScore[libIndex])
 
     for i in range(len(listeLibsSortedBySignupDays)):
         listeLibsSortedBySignupDays[i], listeScoresSortedBySignupDays[i] = SortIdeeFaramineuse(listeLibsSortedBySignupDays[i], listeScoresSortedBySignupDays[i])
 
-    return listeLibsSortedBySignupDays, listeScoresSortedBySignupDays
-
+    return listeLibsSortedBySignupDays, listeScoresSortedBySignupDays, BooksToSend
 
 def CalcLibScore(listBooks, listDays, listNbBooks, Scores, libNumber, jourPasse, jourTot):
     
