@@ -16,6 +16,28 @@ def sortBooks(Scores, listBooks):
 
     return ponderee
 
+def SortIdeeFaramineuse(Libs, Scores):
+
+    Scores, Libs = [y,x for y,x in sorted(zip(Scores, Libs))]
+
+    return Libs, Scores
+
+def CreaListes(listLibs, listDays, listNbBooks, Scores, libNumber, jourPasse, jourTot):
+    listeLibsSortedBySignupDays = [[] for i in range(max(listDays))]
+    listeScoresSortedBySignupDays = [[] for i in range(max(listDays))]
+
+    LibScore, BookToSend = CalcLibScore(listLibs, listDays, listNbBooks, Scores, libNumber, jourPasse, jourTot )
+
+    for libIndex in range(len(listLibs)):
+        listeLibsSortedBySignupDays[libIndex].append(listLibs[libIndex])
+        listeScoresSortedBySignupDays[libIndex].append(LibScore[libIndex])
+
+    for i in range(len(listeLibsSortedBySignupDays)):
+        listeLibsSortedBySignupDays[i], listeScoresSortedBySignupDays[i] = SortIdeeFaramineuse(listeLibsSortedBySignupDays[i], listeScoresSortedBySignupDays[i])
+
+    return listeLibsSortedBySignupDays, listeScoresSortedBySignupDays
+
+
 def CalcLibScore(listBooks, listDays, listNbBooks, Scores, libNumber, jourPasse, jourTot):
     
     LibScore = []
