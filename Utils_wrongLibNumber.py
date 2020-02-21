@@ -71,6 +71,35 @@ def ChooseBestLib(ListScoreSignUpDays):
     
     return np.argmax(listBest)
 
+def CheckX2(libSignX2, ScoreX2, bookToSendX2, listBooks, ScoreBest, ScoreBook, listDays, listNbBooks, jourPasse, jourTot):
+    
+    ScoreFin = ScoreX2
+    mylistDays = []
+    mylistNbBooks = []
+    myBooks = []
+    for lib in libSignX2[1:]:
+        myBooks.append(listBooks[lib])
+        for book in bookToSendX2 :
+            if book in myBooks[-1]:
+                myBooks[-1].remove(book)
+    
+        mylistDays.append(listDays[lib])
+        mylistNbBooks.append(listNbBooks[lib])
+    
+    LibScore, BooksToSend = CalcLibScore(myBooks, mylistDays, mylistNbBooks, ScoreBook, len(libSignX2[1:]), jourPasse + listDays[libSignX2[0]], jourTot)
+    
+    ScoreFin += max(LibScore)
+    
+    if ScoreFin < ScoreBest:
+        return False, 0, 0
+    
+    index = np.argmax(LibScore)
+    
+    indexesBest = [libSignX2[0], libSignX2[index]]
+    booksUpdated = BooksToSend[index]
+    
+    return True, indexesBest, booksUpdated
+
 def DelSuppr(listBooks, BookToDel):
     
     for book in BookToDel :
