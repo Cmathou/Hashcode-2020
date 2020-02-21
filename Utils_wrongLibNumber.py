@@ -10,7 +10,7 @@ import numpy as np
 def sortBooks(Scores, listBooks):
     listScores = []
     for i in listBooks:#range(len(listBooks)):
-    	listScores.append(Scores[i])
+        listScores.append(Scores[i])
     # listScores = [Scores[i] for i in listBooks]
     ponderee = [x for _,x in sorted(zip(listScores, listBooks))]
 
@@ -23,7 +23,7 @@ def SortIdeeFaramineuse(Libs, Scores):
 
     return Libs, Scores
 
-def CreaListes(listLibs, listDays, listNbBooks, Scores, libNumber, jourPasse, jourTot):
+def CreaListes(listLibs, listDays, listNbBooks, Scores, libNumber, jourPasse, jourTot, SentLibs):
     listeLibsSortedBySignupDays = [[] for i in range(max(listDays)+1)]
     listeScoresSortedBySignupDays = [[] for i in range(max(listDays)+1)]
 
@@ -31,7 +31,10 @@ def CreaListes(listLibs, listDays, listNbBooks, Scores, libNumber, jourPasse, jo
 
     for libIndex in range(len(listLibs)):
         listeLibsSortedBySignupDays[listDays[libIndex]].append(libIndex)
-        listeScoresSortedBySignupDays[listDays[libIndex]].append(LibScore[libIndex])
+        if libIndex not in SentLibs:
+            listeScoresSortedBySignupDays[listDays[libIndex]].append(LibScore[libIndex])
+        else:
+            listeScoresSortedBySignupDays[listDays[libIndex]].append(0)
 
     for i in range(len(listeLibsSortedBySignupDays)):
         listeLibsSortedBySignupDays[i], listeScoresSortedBySignupDays[i] = SortIdeeFaramineuse(listeLibsSortedBySignupDays[i], listeScoresSortedBySignupDays[i])
@@ -75,7 +78,7 @@ def CheckX2(libSignX2, ScoreX2, bookToSendX2,indexBest, listBooks, ScoreBook, li
     
     val = int(math.floor(indexBest/2))
 
-    if (len(ScoreX2[val]) == 0) or (len(bookToSendX2[val]) == 0):
+    if ScoreX2[val] == [] or bookToSendX2 [val] == []:
         return False, 0,0
     
     
