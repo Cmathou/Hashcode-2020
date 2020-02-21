@@ -1,8 +1,7 @@
-#!/usr/bin/env python3
 import random
 import math
 import sys
-from Utils import *
+from Utils_wrongLibNumber import *
 
 
 inFile = ["a_example.txt", "b_read_on.txt", "c_incunabula.txt", "d_tough_choices.txt", "e_so_many_books.txt", "f_libraries_of_the_world.txt"]
@@ -74,7 +73,7 @@ def main(fileNbr):
 		newPercent = (100*nbJour)/daysNumber
 		if newPercent > percent:
 			percent = newPercent
-			print newPercent, "%"
+			print(newPercent, "%")
 
 
 
@@ -126,6 +125,6 @@ def numpyToOut(array):
 if (__name__ == "__main__"):
 	#for i in range(len(inFile)):
 	i = int(sys.argv[1])
-	print "doing", inFile[i]
+	print("doing", inFile[i])
 	main(i)
-	print inFile[i], "done"
+	print(inFile[i], "done")
