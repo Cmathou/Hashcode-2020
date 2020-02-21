@@ -1,7 +1,7 @@
 import random
 import math
 import sys
-from Utils_wrongLibNumber import *
+from utilsAntoine import *
 
 
 inFile = ["a_example.txt", "b_read_on.txt", "c_incunabula.txt", "d_tough_choices.txt", "e_so_many_books.txt", "f_libraries_of_the_world.txt"]
@@ -56,10 +56,10 @@ def main(fileNbr):
 		file.write(str(libNumber) + "\n")
 	while nbJour < daysNumber and libDone < libNumber and deletedBooks < bookNumber:
 		libDone += 1
-        
-        LibBySignUp, ScoreBySignUp, BookToSend = CreaListes(libList, nbJoursSignupList, BooksPerDayList, BookScores, libNumber, nbJour, daysNumber)
-        
-#		LibScore, BookToSend = CalcLibScore(libList, nbJoursSignupList, BooksPerDayList, BookScores, libNumber, nbJour, daysNumber )
+
+		LibBySignUp, ScoreBySignUp, BookToSend = CreaListes(libList, nbJoursSignupList, BooksPerDayList, BookScores, libNumber, nbJour, daysNumber)
+
+		#		LibScore, BookToSend = CalcLibScore(libList, nbJoursSignupList, BooksPerDayList, BookScores, libNumber, nbJour, daysNumber )
 		indexBest = ChooseBestLib(ScoreBySignUp)
 
 		libList[indexBest] = []
