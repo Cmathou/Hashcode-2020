@@ -75,7 +75,7 @@ def CheckX2(libSignX2, ScoreX2, bookToSendX2,indexBest, listBooks, ScoreBook, li
     
     val = int(math.floor(indexBest/2))
 
-    if len(ScoreX2[val]) == 0 :
+    if (len(ScoreX2[val]) == 0) or (len(bookToSendX2[val]) == 0):
         return False, 0,0
     
     
