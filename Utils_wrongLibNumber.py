@@ -62,7 +62,7 @@ def CalcLibScore(listBooks, listDays, listNbBooks, Scores, libNumber, jourPasse,
 
 def ChooseBestLib(LibScore):
     
-    return np.argmax(LibScore)
+    return np.argmax([sign[0] for sign in LibScore])
 
 def DelSuppr(listBooks, BookToDel):
     

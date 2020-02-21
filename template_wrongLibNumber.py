@@ -56,8 +56,11 @@ def main(fileNbr):
 		file.write(str(libNumber) + "\n")
 	while nbJour < daysNumber and libDone < libNumber and deletedBooks < bookNumber:
 		libDone += 1
-		LibScore, BookToSend = CalcLibScore(libList, nbJoursSignupList, BooksPerDayList, BookScores, libNumber, nbJour, daysNumber )
-		indexBest = ChooseBestLib(LibScore)
+        
+        LibBySignUp, ScoreBySignUp, BookToSend = CreaListes(libList, nbJoursSignupList, BooksPerDayList, BookScores, libNumber, nbJour, daysNumber)
+        
+#		LibScore, BookToSend = CalcLibScore(libList, nbJoursSignupList, BooksPerDayList, BookScores, libNumber, nbJour, daysNumber )
+		indexBest = ChooseBestLib(ScoreBySignUp)
 
 		libList[indexBest] = []
 
