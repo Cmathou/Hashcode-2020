@@ -70,7 +70,7 @@ def main(fileNbr):
 
 		if Flag :
 			indexBest = indexes
-			BookToSend[indexBest[1]] = books
+			#BookToSend[indexBest[1]] = books
 
 		else:
 			indexBest = [LibBySignUp[indexBestSignup][0]]
