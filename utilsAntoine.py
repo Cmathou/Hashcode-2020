@@ -114,11 +114,12 @@ def CheckX2(libSignX2, ScoreX2, bookToSendX2, indexBest, listBooks, ScoreBook, l
     
     if LibScore != []:
         ScoreFin += max(LibScore[1:])
+        print(LibScore)
     
     if ScoreFin < ScoreBest:
         return False, 0, 0
     
-    index = np.argmax(LibScore)
+    index = np.argmax(LibScore[1:])+1
     
     indexesBest = [libSignX2[0], libSignX2[index]]
     booksUpdated = BooksToSend[index]
